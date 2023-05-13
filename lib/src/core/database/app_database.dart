@@ -1,8 +1,8 @@
-import 'package:drift/drift.dart';
 import 'package:authex/src/core/database/connection/open_connection_stub.dart'
     if (dart.library.io) 'package:authex/src/core/database/connection/open_connection_io.dart'
     if (dart.library.html) 'package:authex/src/core/database/connection/open_connection_html.dart'
     as connection;
+import 'package:drift/drift.dart';
 
 part 'app_database.g.dart';
 

@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:authex/src/feature/sample/widget/sample_screen.dart';
+import 'package:auto_route/auto_route.dart';
 
 part 'router.gr.dart';
 

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:authex/src/core/widget/scope_widgets.dart';
 import 'package:authex/src/feature/app/widget/app_context.dart';
 import 'package:authex/src/feature/initialization/model/initialization_progress.dart';
 import 'package:authex/src/feature/initialization/widget/dependencies_scope.dart';
+import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 /// A widget which is responsible for running the app.
 class App extends StatelessWidget {

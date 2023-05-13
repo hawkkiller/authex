@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:authex/src/feature/app/logic/tracking_manager.dart';
 import 'package:authex/src/feature/initialization/logic/initialization_steps.dart';
 import 'package:authex/src/feature/initialization/model/environment_store.dart';
 import 'package:authex/src/feature/initialization/model/initialization_hook.dart';
 import 'package:authex/src/feature/initialization/model/initialization_progress.dart';
+import 'package:flutter/foundation.dart';
 
 part 'initialization_factory.dart';
 
