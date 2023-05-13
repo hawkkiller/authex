@@ -1,5 +1,5 @@
-import 'package:sizzle_starter/src/core/localization/app_localization.dart';
-import 'package:sizzle_starter/src/core/localization/localization_delegate.dart';
+import 'package:authex/src/core/localization/app_localization.dart';
+import 'package:authex/src/core/localization/localization_delegate.dart';
 
 abstract class SampleStrings {
   String get appTitle;

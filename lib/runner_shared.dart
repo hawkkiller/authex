@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:sizzle_starter/src/core/utils/logger.dart';
-import 'package:sizzle_starter/src/feature/app/logic/app_runner.dart';
-import 'package:sizzle_starter/src/feature/initialization/model/initialization_hook.dart';
+import 'package:authex/src/core/utils/logger.dart';
+import 'package:authex/src/feature/app/logic/app_runner.dart';
+import 'package:authex/src/feature/initialization/model/initialization_hook.dart';
 
 /// Run that uses all platforms
 void sharedRun(InitializationHook hook) {
