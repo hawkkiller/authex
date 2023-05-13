@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sizzle_starter/src/core/localization/app_localization.dart';
+import 'package:authex/src/core/localization/app_localization.dart';
 
 abstract class LocalizationDelegate<T> extends LocalizationsDelegate<T> {
   LocalizationDelegate(this._delegateFactory);
