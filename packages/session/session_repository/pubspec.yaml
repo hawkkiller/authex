@@ -1,0 +1,29 @@
+name: session_repository
+description: User repository
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+publish_to: 'none'
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0 <4.0.0"
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  sizzle_lints: ^1.0.10
+  test: ^1.21.0
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.1.0
+
+  session_storage:
+    path: ../session_storage
+
+  sign_in_data_provider:
+    path: ../sign_in_data_provider
+
+  sign_up_data_provider:
+    path: ../sign_up_data_provider
