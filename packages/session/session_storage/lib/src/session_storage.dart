@@ -19,7 +19,7 @@ abstract interface class ISessionStorage {
   Future<void> close();
 }
 
-class SessionStorage implements ISessionStorage {
+final class SessionStorage implements ISessionStorage {
   SessionStorage({
     required FlutterSecureStorage storage,
   }) : _storage = storage;

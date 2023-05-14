@@ -26,19 +26,19 @@ abstract interface class ISessionRepository implements CloseableRepository {
   Future<TokenPair?> loadTokens();
 
   /// Sends signIn request to the server, saves tokens in case of success.
-  Future<void> signInWithCredentials({
+  Future<TokenPair> signInWithCredentials({
     required String email,
     required String password,
   });
 
   /// Sends signUp request to the server, saves tokens in case of success.
-  Future<void> signUp({
+  Future<TokenPair> signUp({
     required String email,
     required String password,
   });
 }
 
-class SessionRepository implements ISessionRepository {
+final class SessionRepository implements ISessionRepository {
   SessionRepository({
     required ISessionStorage sessionStorage,
     required ISignInDataProvider signInDataProvider,

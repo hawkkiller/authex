@@ -1,47 +1,75 @@
-import 'package:authex/src/core/router/router.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:rest_client/rest_client.dart';
+import 'package:session_repository/session_repository.dart';
+import 'package:session_storage/session_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'initialization_progress.freezed.dart';
+class RepositoriesStore {
+  const RepositoriesStore({
+    required this.sessionRepository,
+  });
 
-@freezed
-class RepositoriesStore with _$RepositoriesStore {
-  const factory RepositoriesStore() = _RepositoriesStore;
+  final ISessionRepository sessionRepository;
 }
 
-@freezed
-class DependenciesStore with _$DependenciesStore {
-  const factory DependenciesStore({
-    required SharedPreferences preferences,
-    required AppRouter router,
-  }) = _DependenciesStore;
+class DependenciesStore {
+  const DependenciesStore({
+    required this.preferences,
+    required this.sessionStorage,
+    required this.restClient,
+  });
 
-  const DependenciesStore._();
+  final SharedPreferences preferences;
+  final ISessionStorage sessionStorage;
+  final RestClient restClient;
 }
 
-@freezed
-class InitializationProgress with _$InitializationProgress {
-  const factory InitializationProgress({
-    SharedPreferences? preferences,
-    AppRouter? router,
-  }) = _InitializationProgress;
+class InitializationProgress {
+  const InitializationProgress({
+    this.preferences,
+    this.sessionRepository,
+    this.sessionStorage,
+    this.restClient,
+  });
 
-  const InitializationProgress._();
+  final SharedPreferences? preferences;
+  final ISessionRepository? sessionRepository;
+  final ISessionStorage? sessionStorage;
+  final RestClient? restClient;
 
   DependenciesStore dependencies() => DependenciesStore(
         preferences: preferences!,
-        router: router!,
+        sessionStorage: sessionStorage!,
+        restClient: restClient!,
       );
 
-  RepositoriesStore repositories() => const RepositoriesStore();
+  RepositoriesStore repositories() => RepositoriesStore(
+        sessionRepository: sessionRepository!,
+      );
+
+  InitializationProgress copyWith({
+    SharedPreferences? preferences,
+    ISessionRepository? sessionRepository,
+    ISessionStorage? sessionStorage,
+    RestClient? restClient,
+  }) =>
+      InitializationProgress(
+        preferences: preferences ?? this.preferences,
+        sessionRepository: sessionRepository ?? this.sessionRepository,
+        sessionStorage: sessionStorage ?? this.sessionStorage,
+        restClient: restClient ?? this.restClient,
+      );
 }
 
-@freezed
-class InitializationResult with _$InitializationResult {
-  const factory InitializationResult({
-    required DependenciesStore dependencies,
-    required RepositoriesStore repositories,
-    required int stepCount,
-    required int msSpent,
-  }) = _InitializationResult;
+class InitializationResult {
+  const InitializationResult({
+    required this.dependencies,
+    required this.repositories,
+    required this.stepCount,
+    required this.msSpent,
+  });
+
+  final DependenciesStore dependencies;
+  final RepositoriesStore repositories;
+  final int stepCount;
+  final int msSpent;
 }
