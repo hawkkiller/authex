@@ -63,6 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(
                 maxWidth: 500,
+                maxHeight: 500,
               ),
               child: ListView(
                 padding: const EdgeInsets.all(16),
