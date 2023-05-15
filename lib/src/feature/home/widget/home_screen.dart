@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:authex/src/core/assets/generated/assets.gen.dart';
 import 'package:authex/src/core/utils/extensions/context_extension.dart';
 import 'package:authex/src/feature/auth/widget/auth_scope.dart';
 import 'package:auto_route/auto_route.dart';
@@ -76,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: min(500, MediaQuery.of(context).size.height),
                     width: min(500, MediaQuery.of(context).size.height),
                     child: RiveAnimation.asset(
-                      'rive/sith.riv',
+                      Assets.rive.sith.path,
                       onInit: _onInit,
                     ),
                   ),
