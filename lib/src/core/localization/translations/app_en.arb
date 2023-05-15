@@ -16,5 +16,6 @@
   "welcome_message": "Welcome, Brave Adventurer!",
   "welcome_message_description": "AuthEx is a Flutter application, that demonstrates an approach for implementing authentication and authorization in Flutter applications. It includes routing, guards, localization, state management, and more.",
   "you_are_authenticated": "You are authenticated!",
-  "you_are_not_authenticated": "You are not authenticated!"
+  "you_are_not_authenticated": "You are not authenticated!",
+  "have_no_account_register": "Do not have an account? Register."
 }

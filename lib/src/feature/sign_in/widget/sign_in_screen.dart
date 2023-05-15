@@ -1,3 +1,4 @@
+import 'package:authex/src/core/router/router.dart';
 import 'package:authex/src/core/utils/extensions/context_extension.dart';
 import 'package:authex/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:authex/src/feature/sign_in/bloc/sign_in_bloc.dart';
@@ -94,6 +95,19 @@ class _SignInScreenState extends State<SignInScreen> {
                       onPressed: fieldsEmpty() ? null : signIn,
                       child: Text(
                         context.stringOf().sign_in,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          context.router.push(const SignUpRoute());
+                        },
+                        child: Text(
+                          context.stringOf().have_no_account_register,
+                        ),
                       ),
                     ),
                   ),
