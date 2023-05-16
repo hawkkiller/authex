@@ -61,11 +61,9 @@ dependencies:
   pure: 0.2.0
   platform_info: ^4.0.0
   bloc_concurrency: ^0.2.1
-
-  rest_client:
-    path: packages/rest_client
   flutter_secure_storage: ^8.0.0
   rive: ^0.10.4
+  http_interceptor: ^1.0.2
 
 dev_dependencies:
   # Testing

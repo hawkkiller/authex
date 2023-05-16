@@ -1,4 +1,4 @@
-import 'package:rest_client/rest_client.dart';
+import 'package:http/http.dart' as http;
 
 typedef SignInCredentials = ({String email, String password});
 typedef SignInResponse = ({String accessToken, String refreshToken});
@@ -12,7 +12,7 @@ class SignInDataProvider implements ISignInDataProvider {
     required this.client,
   });
 
-  final RestClient client;
+  final http.Client client;
 
   @override
   Future<SignInResponse> signIn(SignInCredentials credentials) async => (

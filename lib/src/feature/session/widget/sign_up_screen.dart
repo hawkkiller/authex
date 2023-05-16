@@ -39,6 +39,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   @override
+  void dispose() {
+    signUpBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => BlocListener<SignUpBloc, SignUpState>(
         bloc: signUpBloc,
         listener: (context, state) {

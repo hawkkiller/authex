@@ -1,14 +1,17 @@
+import 'package:authex/src/feature/home/data/home_repository.dart';
 import 'package:authex/src/feature/session/data/session_repository.dart';
 import 'package:authex/src/feature/session/data/session_storage.dart';
-import 'package:rest_client/rest_client.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RepositoriesStore {
   const RepositoriesStore({
     required this.sessionRepository,
+    required this.homeRepository,
   });
 
   final ISessionRepository sessionRepository;
+  final IHomeRepository homeRepository;
 }
 
 class DependenciesStore {
@@ -20,7 +23,7 @@ class DependenciesStore {
 
   final SharedPreferences preferences;
   final ISessionStorage sessionStorage;
-  final RestClient restClient;
+  final http.Client restClient;
 }
 
 class InitializationProgress {
@@ -28,13 +31,15 @@ class InitializationProgress {
     this.preferences,
     this.sessionRepository,
     this.sessionStorage,
+    this.homeRepository,
     this.restClient,
   });
 
   final SharedPreferences? preferences;
   final ISessionRepository? sessionRepository;
   final ISessionStorage? sessionStorage;
-  final RestClient? restClient;
+  final IHomeRepository? homeRepository;
+  final http.Client? restClient;
 
   DependenciesStore dependencies() => DependenciesStore(
         preferences: preferences!,
@@ -44,19 +49,22 @@ class InitializationProgress {
 
   RepositoriesStore repositories() => RepositoriesStore(
         sessionRepository: sessionRepository!,
+        homeRepository: homeRepository!,
       );
 
   InitializationProgress copyWith({
     SharedPreferences? preferences,
     ISessionRepository? sessionRepository,
     ISessionStorage? sessionStorage,
-    RestClient? restClient,
+    IHomeRepository? homeRepository,
+    http.Client? restClient,
   }) =>
       InitializationProgress(
         preferences: preferences ?? this.preferences,
         sessionRepository: sessionRepository ?? this.sessionRepository,
         sessionStorage: sessionStorage ?? this.sessionStorage,
         restClient: restClient ?? this.restClient,
+        homeRepository: homeRepository ?? this.homeRepository,
       );
 }
 
