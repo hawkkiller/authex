@@ -1,49 +1,48 @@
-import 'package:authex/src/core/router/router.dart';
 import 'package:authex/src/core/utils/extensions/context_extension.dart';
 import 'package:authex/src/feature/initialization/widget/dependencies_scope.dart';
-import 'package:authex/src/feature/sign_in/bloc/sign_in_bloc.dart';
+import 'package:authex/src/feature/session/bloc/sign_up_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   String email = '';
   String password = '';
 
   bool fieldsEmpty() => email.isEmpty || password.isEmpty;
 
-  void signIn() {
-    signInBloc.add(
-      SignInEventSignIn(
+  void signUp() {
+    signUpBloc.add(
+      SignUpEventSignUp(
         email: email,
         password: password,
       ),
     );
   }
 
-  late final SignInBloc signInBloc;
+  late final SignUpBloc signUpBloc;
 
   @override
   void initState() {
-    signInBloc = SignInBloc(
+    signUpBloc = SignUpBloc(
       DependenciesScope.repositoriesOf(context).sessionRepository,
     );
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) => BlocListener<SignInBloc, SignInState>(
-        bloc: signInBloc,
+  Widget build(BuildContext context) => BlocListener<SignUpBloc, SignUpState>(
+        bloc: signUpBloc,
         listener: (context, state) {
-          if (state case SignInSuccessState()) {
+          if (state case SignUpSuccessState()) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
@@ -92,22 +91,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       top: 16,
                     ),
                     child: ElevatedButton(
-                      onPressed: fieldsEmpty() ? null : signIn,
+                      onPressed: fieldsEmpty() ? null : signUp,
                       child: Text(
-                        context.stringOf().sign_in,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Center(
-                      child: TextButton(
-                        onPressed: () {
-                          context.router.push(const SignUpRoute());
-                        },
-                        child: Text(
-                          context.stringOf().have_no_account_register,
-                        ),
+                        context.stringOf().sign_up,
                       ),
                     ),
                   ),

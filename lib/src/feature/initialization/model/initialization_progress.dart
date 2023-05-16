@@ -1,6 +1,6 @@
+import 'package:authex/src/feature/session/data/session_repository.dart';
+import 'package:authex/src/feature/session/data/session_storage.dart';
 import 'package:rest_client/rest_client.dart';
-import 'package:session_repository/session_repository.dart';
-import 'package:session_storage/session_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RepositoriesStore {

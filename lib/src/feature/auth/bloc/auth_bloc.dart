@@ -1,6 +1,6 @@
 import 'package:authex/src/core/utils/mixin/setstate_mixin.dart';
+import 'package:authex/src/feature/session/data/session_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:session_repository/session_repository.dart';
 
 sealed class AuthState {
   const AuthState();

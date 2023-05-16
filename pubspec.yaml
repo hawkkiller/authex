@@ -64,18 +64,6 @@ dependencies:
 
   rest_client:
     path: packages/rest_client
-  
-  session_repository:
-    path: packages/session/session_repository
-
-  session_storage:
-    path: packages/session/session_storage
-
-  sign_in_data_provider:
-    path: packages/session/sign_in_data_provider
-
-  sign_up_data_provider:
-    path: packages/session/sign_up_data_provider
   flutter_secure_storage: ^8.0.0
   rive: ^0.10.4
 

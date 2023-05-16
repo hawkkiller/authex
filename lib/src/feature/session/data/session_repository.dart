@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:session_storage/session_storage.dart';
-import 'package:sign_in_data_provider/sign_in_data_provider.dart';
-import 'package:sign_up_data_provider/sign_up_data_provider.dart';
+import 'package:authex/src/feature/session/data/session_storage.dart';
+import 'package:authex/src/feature/session/data/sign_in_data_provider.dart';
+import 'package:authex/src/feature/session/data/sign_up_data_provider.dart';
 
 abstract interface class CloseableRepository {
   Future<void> close();
