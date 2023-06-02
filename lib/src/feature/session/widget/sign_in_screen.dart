@@ -46,81 +46,79 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => BlocListener<SignInBloc, SignInState>(
-        bloc: signInBloc,
-        listener: (context, state) {
-          if (state case SignInSuccessState()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  context.stringOf().sign_in_success,
-                ),
+  Widget build(BuildContext context) => BlocConsumer<SignInBloc, SignInState>(
+      bloc: signInBloc,
+      listener: (context, state) {
+        if (state case SignInSuccessState()) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                context.stringOf().sign_in_success,
               ),
-            );
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              context.stringOf().sign_in,
             ),
-          ),
-          backgroundColor: Theme.of(context).colorScheme.background,
-          body: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 500,
-                maxHeight: 500,
+          );
+        }
+      },
+      builder: (context, state) => Scaffold(
+            appBar: AppBar(
+              title: Text(
+                context.stringOf().sign_in,
               ),
-              child: ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  TextField(
-                    onChanged: (value) => setState(() => email = value),
-                    decoration: InputDecoration(
-                      labelText: context.stringOf().email,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 16,
-                    ),
-                    child: TextField(
-                      onChanged: (value) => setState(() => password = value),
-                      obscureText: true,
+            ),
+            backgroundColor: Theme.of(context).colorScheme.background,
+            body: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 500,
+                  maxHeight: 500,
+                ),
+                child: ListView(
+                  padding: const EdgeInsets.all(16),
+                  children: [
+                    TextField(
+                      onChanged: (value) => setState(() => email = value),
                       decoration: InputDecoration(
-                        labelText: context.stringOf().password,
+                        labelText: context.stringOf().email,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 16,
-                    ),
-                    child: ElevatedButton(
-                      onPressed: fieldsEmpty() ? null : signIn,
-                      child: Text(
-                        context.stringOf().sign_in,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 16,
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Center(
-                      child: TextButton(
-                        onPressed: () {
-                          context.router.push(const SignUpRoute());
-                        },
-                        child: Text(
-                          context.stringOf().have_no_account_register,
+                      child: TextField(
+                        onChanged: (value) => setState(() => password = value),
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: context.stringOf().password,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: ElevatedButton(
+                        onPressed: fieldsEmpty() || state.isLoading ? null : signIn,
+                        child: state.isLoading
+                            ? const CircularProgressIndicator.adaptive()
+                            : Text(
+                                context.stringOf().sign_in,
+                              ),
+                      ),
+                    ),
+                    if (!state.isLoading)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Center(
+                          child: TextButton(
+                            onPressed: () => context.router.push(const SignUpRoute()),
+                            child: Text(
+                              context.stringOf().have_no_account_register,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ),
-      );
+          ));
 }
