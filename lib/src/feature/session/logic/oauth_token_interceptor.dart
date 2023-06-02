@@ -12,7 +12,7 @@ class OAuthTokenInterceptor implements InterceptorContract {
     if (token != null) {
       data.headers['Authorization'] = 'Bearer ${token.accessToken}';
     }
-    
+
     return data;
   }
 

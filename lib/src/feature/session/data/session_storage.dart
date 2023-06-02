@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:async/async.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 typedef TokenPair = ({String accessToken, String refreshToken});
@@ -32,22 +33,26 @@ final class SessionStorage implements ISessionStorage {
   static const _accessToken = '$_prefix.token.access';
   static const _refreshToken = '$_prefix.token.refresh';
 
+  final _cache = AsyncCache<TokenPair?>.ephemeral();
+
   @override
-  Future<TokenPair?> loadTokenPair() async {
-    final accessToken = await _storage.read(key: _accessToken);
-    final refreshToken = await _storage.read(key: _refreshToken);
+  Future<TokenPair?> loadTokenPair() async => _cache.fetch(
+        () async {
+          final accessToken = await _storage.read(key: _accessToken);
+          final refreshToken = await _storage.read(key: _refreshToken);
 
-    if (refreshToken == null || accessToken == null) {
-      return null;
-    }
+          if (refreshToken == null || accessToken == null) {
+            return null;
+          }
 
-    final tokenPair = (
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    );
+          final tokenPair = (
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+          );
 
-    return tokenPair;
-  }
+          return tokenPair;
+        },
+      );
 
   @override
   Future<void> saveTokenPair(TokenPair tokenPair) async {
