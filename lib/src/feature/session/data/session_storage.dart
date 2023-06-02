@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:l/l.dart';
 
 typedef TokenPair = ({String accessToken, String refreshToken});
 
