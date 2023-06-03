@@ -28,10 +28,7 @@ final class RefreshClient implements IRefreshClient {
 
     return _client.post(
       uri,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-      },
+      headers: {'Accept': 'application/json'},
     ).then((response) => $tokenPairCodec.decoder.convert(response.body));
   }
 }

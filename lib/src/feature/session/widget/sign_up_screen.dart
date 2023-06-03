@@ -45,24 +45,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => BlocListener<SignUpBloc, SignUpState>(
+  Widget build(BuildContext context) => BlocConsumer<SignUpBloc, SignUpState>(
         bloc: signUpBloc,
         listener: (context, state) {
           if (state case SignUpSuccessState()) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  context.stringOf().sign_in_success,
+                  context.stringOf().sign_up_success,
                 ),
               ),
             );
           }
         },
-        child: Scaffold(
+        builder: (context, state) => Scaffold(
           appBar: AppBar(
-            title: Text(
-              context.stringOf().sign_in,
-            ),
+            title: Text(context.stringOf().sign_up),
           ),
           backgroundColor: Theme.of(context).colorScheme.background,
           body: Center(
@@ -97,10 +95,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       top: 16,
                     ),
                     child: ElevatedButton(
-                      onPressed: fieldsEmpty() ? null : signUp,
-                      child: Text(
-                        context.stringOf().sign_up,
-                      ),
+                      onPressed: fieldsEmpty() || state.isLoading ? null : signUp,
+                      child: state.isLoading
+                          ? const CircularProgressIndicator.adaptive()
+                          : Text(
+                              context.stringOf().sign_up,
+                            ),
                     ),
                   ),
                 ],

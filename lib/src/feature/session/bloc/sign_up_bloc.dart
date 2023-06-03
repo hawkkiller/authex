@@ -3,6 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 sealed class SignUpState {
   const SignUpState();
+
+  bool get isLoading => switch (this) {
+    SignUpLoadingState() => true,
+    _ => false,
+  };
 }
 
 final class SignUpIdleState extends SignUpState {
