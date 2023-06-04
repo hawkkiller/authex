@@ -32,8 +32,8 @@ dependencies:
   auto_route: ^7.1.0
 
   # Firebase
-  firebase_analytics: ^10.1.5
-  firebase_core: ^2.7.0
+  # firebase_analytics: ^10.1.5
+  # firebase_core: ^2.7.0
 
   # l10n
   intl: ^0.18.0
@@ -45,13 +45,9 @@ dependencies:
   path: ^1.8.2
 
   # Persisting
-  drift: ^2.5.0
-  sqlite3_flutter_libs: ^0.5.13
+  # drift: ^2.5.0
+  # sqlite3_flutter_libs: ^0.5.13
   shared_preferences: ^2.0.17
-
-  # Codegen annotations
-  json_annotation: ^4.8.0
-  freezed_annotation: 2.2.0
 
   # Logging
   stack_trace: 1.11.0
@@ -65,20 +61,16 @@ dependencies:
   pure: 0.2.0
   platform_info: ^4.0.0
   bloc_concurrency: ^0.2.1
-
-  rest_client:
-    path: packages/rest_client
+  flutter_secure_storage: ^8.0.0
+  rive: ^0.10.4
+  http_interceptor: ^1.0.2
 
 dev_dependencies:
   # Testing
   flutter_test:
     sdk: flutter
 
-  # Codegen
-  freezed: ^2.3.3
-  json_serializable: ^6.6.1
   build_runner: ^2.4.2
-  drift_dev: ^2.5.1
   auto_route_generator: ^7.0.0
 
   # Utilities
@@ -95,7 +87,10 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/rive/
 
 flutter_gen:
   output: lib/src/core/assets/generated
   line_length: 100
+  integrations:
+    rive: true

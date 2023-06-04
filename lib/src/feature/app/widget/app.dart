@@ -1,5 +1,6 @@
 import 'package:authex/src/core/widget/scope_widgets.dart';
 import 'package:authex/src/feature/app/widget/app_context.dart';
+import 'package:authex/src/feature/app/widget/global_scopes.dart';
 import 'package:authex/src/feature/initialization/model/initialization_progress.dart';
 import 'package:authex/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,6 @@ class App extends StatelessWidget {
           repositories: result.repositories,
           child: child,
         ),
-        child: const AppContext(),
+        child: const GlobalScopes(child: AppContext()),
       );
 }
