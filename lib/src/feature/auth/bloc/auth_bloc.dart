@@ -6,14 +6,14 @@ sealed class AuthState {
   const AuthState();
 
   bool get authenticated => switch (this) {
-    AuthStateAuthenticated() => true,
-    _ => false,
-  };
+        AuthStateAuthenticated() => true,
+        _ => false,
+      };
 
   bool get unauthenticated => switch (this) {
-    AuthStateUnauthenticated() => true,
-    _ => false,
-  };
+        AuthStateUnauthenticated() => true,
+        _ => false,
+      };
 }
 
 class AuthStateIdle extends AuthState {

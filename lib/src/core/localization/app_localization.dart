@@ -17,7 +17,6 @@ class AppLocalization {
   /// All the localizations delegates
   static const localizationsDelegates = GeneratedLocalizations.localizationsDelegates;
 
-
   /// Returns the localized strings for the given [context].
   static T stringOf<T>(BuildContext context) => Localizations.of<T>(context, T)!;
 
